@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Nativfier HTML</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="tailwind.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="magic">Something</div>
+  <h1 class="text-3xl font-bold underline">Nativfier frontend</h1>
+  <form action="/save" method="post" id="dataform">
+    <p>URL</p><input type="text" name="Url">
+    <p>Os</p>
+    <li>
+      <input type="radio" id="linux" name="Os" value="linux">
+      <label for="linux">Linux</label>
+      <input type="radio" id="windows" name="Os" value="windows">
+      <label for="windows">Windows</label>
+      <input type="radio" id="mac" name="Os" value="darwin">
+      <label for="mac">MacOs</label>
+  </form>
+
+  <button type="submit" form="dataform" value="Submit">Submit</button>
+</body>
+
+</html>
