@@ -1,21 +1,15 @@
-FROM golang:1.19 AS downloader 
+FROM golang:latest as builder 
 WORKDIR /app
 COPY go.mod go.sum ./
-RUN go mod download
+RUN go mod download 
 COPY . .
-RUN ls -la
-RUN go build -o nativefier-downloader 
+RUN go build -o nativefier-downloader
 
-
-FROM node:16 AS nodeimage
-WORKDIR /app
-COPY --from=downloader /app/package*.json ./
-RUN npm install
-COPY --from=downloader /app .
-RUN ls -la 
-
-FROM gcr.io/distroless/static-debian11
-WORKDIR /app
-COPY --from=nodeimage /app .
+FROM node:16 
+WORKDIR /usr/src/app
+COPY --from=builder /app/package*.json ./
+RUN npm install 
+COPY --from=builder /app ./
+RUN ls -la node_modules/.bin/
 EXPOSE 1323
-ENTRYPOINT [ "/app/nativefier-downloader" ] 
+ENTRYPOINT [ "./nativefier-downloader" ]

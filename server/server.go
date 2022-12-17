@@ -30,7 +30,7 @@ func BuildWebApp(Url string, Os string) string {
 	directoryName := folderName + "-" + Os + "-" + runtimeOs
 	zipFileName := directoryName + ".zip"
 
-	executeCommand := exec.Command("nativefier", Url, "--name", folderName, "-p", Os)
+	executeCommand := exec.Command("./node_modules/.bin/nativefier", Url, "--name", folderName, "-p", Os)
 	fmt.Println(zipFileName)
 
 	stdout, err := executeCommand.Output()
@@ -39,9 +39,9 @@ func BuildWebApp(Url string, Os string) string {
 	}
 
 	fmt.Printf(string(stdout))
-	fmt.Printf("Zipping: %v", zipFileName)
+	fmt.Printf("Zipping: %v\n", zipFileName)
 	zipDirectory(directoryName, zipFileName)
-	fmt.Println("Zip complete! ")
+	fmt.Printf("Zip complete! %v\n", zipFileName)
 	return zipFileName
 }
 
