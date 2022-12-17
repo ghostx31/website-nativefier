@@ -1,0 +1,15 @@
+name: Build docker image for Nativefier-downloader
+
+on: [workflow_dispatch]
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v3
+      - name: Dockerfile build 
+        uses: VaultVulp/gp-docker-action@1.2.0
+        with: 
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: nativefier-downloader
+          image-tag: latest

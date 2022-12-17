@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "nativefier": "^50.0.1"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
   }
 }
