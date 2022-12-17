@@ -10,6 +10,6 @@ jobs:
       - name: Dockerfile build 
         uses: VaultVulp/gp-docker-action@1.2.0
         with: 
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.REPO_SECRETS }}
           image-name: nativefier-downloader
           image-tag: latest
