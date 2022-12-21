@@ -13,7 +13,6 @@ import (
 )
 
 func GetUrlFromUser(Url string, Os string) string {
-
 	fileName := BuildWebApp(Url, Os)
 
 	return fileName
@@ -25,24 +24,30 @@ func BuildWebApp(Url string, Os string) string {
 		panic(err)
 	}
 
+	if Os == "windows" { // If OS is Windows
+		Os = "win32"
+	}
+	if Os == "mac" { // If OS is Mac
+		Os = "darwin"
+	}
+	// TODO: Add support for more mac related stuff. nativefier --help for more info.
 	folderName := name.Hostname()
 	runtimeOs := strings.ReplaceAll(runtime.GOARCH, "amd", "x")
 	directoryName := folderName + "-" + Os + "-" + runtimeOs
 	zipFileName := directoryName + ".zip"
 
 	executeCommand := exec.Command("./node_modules/.bin/nativefier", Url, "--name", folderName, "-p", Os)
-	fmt.Println(zipFileName)
-
+	// executeCommand := exec.Command("nativefier", Url, "--name", folderName, "-p", Os)
 	stdout, err := executeCommand.Output()
 	if err != nil {
-		panic(err)
+		fmt.Printf("error: %v", err)
 	}
-
 	fmt.Printf(string(stdout))
 	fmt.Printf("Zipping: %v\n", zipFileName)
 	zipDirectory(directoryName, zipFileName)
 	fmt.Printf("Zip complete! %v\n", zipFileName)
 	return zipFileName
+
 }
 
 func zipDirectory(source, target string) error {
