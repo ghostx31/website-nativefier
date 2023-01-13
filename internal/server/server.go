@@ -10,33 +10,35 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+
+	"github.com/ghostx31/nativefier-downloader/internal/structs"
 )
 
-func GetUrlFromUser(Url string, Os string) string {
-	fileName := BuildWebApp(Url, Os)
+func GetUrlFromUser(urlparams structs.Urlparams) string {
+	fileName := BuildWebApp(urlparams)
 
 	return fileName
 }
 
-func BuildWebApp(Url string, Os string) string {
-	name, err := url.Parse(Url)
+func BuildWebApp(urlparams structs.Urlparams) string {
+	name, err := url.Parse(urlparams.Url)
 	if err != nil {
 		panic(err)
 	}
 
-	if Os == "windows" { // If OS is Windows
-		Os = "win32"
+	if urlparams.Os == "windows" { // If OS is Windows
+		urlparams.Os = "win32"
 	}
-	if Os == "mac" { // If OS is Mac
-		Os = "darwin"
+	if urlparams.Os == "mac" { // If OS is Mac
+		urlparams.Os = "darwin"
 	}
 	// TODO: Add support for more mac related stuff. nativefier --help for more info.
 	folderName := name.Hostname()
 	runtimeOs := strings.ReplaceAll(runtime.GOARCH, "amd", "x")
-	directoryName := folderName + "-" + Os + "-" + runtimeOs
+	directoryName := folderName + "-" + urlparams.Os + "-" + runtimeOs
 	zipFileName := directoryName + ".zip"
 
-	executeCommand := exec.Command("./node_modules/.bin/nativefier", Url, "--name", folderName, "-p", Os)
+	executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
 	// executeCommand := exec.Command("nativefier", Url, "--name", folderName, "-p", Os)
 	stdout, err := executeCommand.Output()
 	if err != nil {

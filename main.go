@@ -4,7 +4,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ghostx31/nativefier-downloader/server"
+	"github.com/ghostx31/nativefier-downloader/internal/server"
+	"github.com/ghostx31/nativefier-downloader/internal/structs"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -18,8 +19,14 @@ func main() {
 		HTML5:  true,
 	}))
 	e.POST("/save", func(c echo.Context) error {
-		url, Os := c.FormValue("Url"), c.FormValue("Os")
-		file := server.GetUrlFromUser(url, Os)
+		url, Os, widewine := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine")
+
+		urlparams := structs.Urlparams{
+			Url:      url,
+			Os:       Os,
+			Widewine: widewine,
+		}
+		file := server.GetUrlFromUser(urlparams)
 
 		defer os.Remove(file) // Remove the zip file
 		dirName := strings.Trim(file, ".zip")
