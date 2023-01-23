@@ -19,10 +19,10 @@ func main() {
 		HTML5:  true,
 	}))
 	e.POST("/save", func(c echo.Context) error {
-		url, Os, widewine := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine")
+		Url, Os, widewine := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine")
 
 		urlparams := structs.Urlparams{
-			Url:      url,
+			Url:      Url,
 			Os:       Os,
 			Widewine: widewine,
 		}

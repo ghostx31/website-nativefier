@@ -16,30 +16,46 @@ import (
 
 func GetUrlFromUser(urlparams structs.Urlparams) string {
 	fileName := BuildWebApp(urlparams)
-
 	return fileName
 }
 
-func BuildWebApp(urlparams structs.Urlparams) string {
+func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName string, directoryName string) {
 	name, err := url.Parse(urlparams.Url)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(name.Hostname())
 
-	if urlparams.Os == "windows" { // If OS is Windows
+	if urlparams.Os == "windows" {
 		urlparams.Os = "win32"
 	}
-	if urlparams.Os == "mac" { // If OS is Mac
+	if urlparams.Os == "mac" {
 		urlparams.Os = "darwin"
 	}
-	// TODO: Add support for more mac related stuff. nativefier --help for more info.
-	folderName := name.Hostname()
-	runtimeOs := strings.ReplaceAll(runtime.GOARCH, "amd", "x")
-	directoryName := folderName + "-" + urlparams.Os + "-" + runtimeOs
-	zipFileName := directoryName + ".zip"
 
-	executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
-	// executeCommand := exec.Command("nativefier", Url, "--name", folderName, "-p", Os)
+	folderName = name.Hostname()
+	runtimeOs := strings.ReplaceAll(runtime.GOARCH, "amd", "x")
+	directoryName = folderName + "-" + urlparams.Os + "-" + runtimeOs
+	zipFileName = directoryName + ".zip"
+
+	fmt.Printf("\nDirectory name is: %v", directoryName)
+	fmt.Printf("\nZip file name is: %v", string(zipFileName))
+	file, err := os.OpenFile("save.txt", os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	_, err = file.Write([]byte(zipFileName))
+	if err != nil {
+		panic(err)
+	}
+	return zipFileName, folderName, directoryName
+}
+
+func BuildWebApp(urlparams structs.Urlparams) string {
+	zipFileName, folderName, directoryName := GetFilename(urlparams)
+	// executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
+	executeCommand := exec.Command("nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
 	stdout, err := executeCommand.Output()
 	if err != nil {
 		fmt.Printf("error: %v", err)
@@ -49,7 +65,6 @@ func BuildWebApp(urlparams structs.Urlparams) string {
 	zipDirectory(directoryName, zipFileName)
 	fmt.Printf("Zip complete! %v\n", zipFileName)
 	return zipFileName
-
 }
 
 func zipDirectory(source, target string) error {
@@ -98,4 +113,10 @@ func zipDirectory(source, target string) error {
 		_, err = io.Copy(headerWriter, f)
 		return err
 	})
+}
+
+// TODO: Will be used to read the save.txt file and provide the download to the user.
+func userDownload() string {
+
+	return ""
 }
