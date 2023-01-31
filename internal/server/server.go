@@ -14,11 +14,14 @@ import (
 	"github.com/ghostx31/nativefier-downloader/internal/structs"
 )
 
+// GetUrlFromUser function is responsible for collecting URL, OS and other data
+// from the user.
 func GetUrlFromUser(urlparams structs.Urlparams) string {
 	fileName := BuildWebApp(urlparams)
 	return fileName
 }
 
+// GetFilename is responsible for getting the name of the zip file and the directory created.
 func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName string, directoryName string) {
 	name, err := url.Parse(urlparams.Url)
 	if err != nil {
@@ -52,6 +55,7 @@ func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName st
 	return zipFileName, folderName, directoryName
 }
 
+// BuildWebApp is responsible for building the electron app.
 func BuildWebApp(urlparams structs.Urlparams) string {
 	zipFileName, folderName, directoryName := GetFilename(urlparams)
 	// executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
@@ -67,6 +71,7 @@ func BuildWebApp(urlparams structs.Urlparams) string {
 	return zipFileName
 }
 
+// zipDirectory creates a zip of the electron app directory built by BuildWebApp
 func zipDirectory(source, target string) error {
 	f, err := os.Create(target)
 	if err != nil {

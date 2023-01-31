@@ -10,6 +10,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+// main function is used to run the server and interact with other packages
 func main() {
 	e := echo.New()
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
@@ -27,7 +28,6 @@ func main() {
 			Widewine: widewine,
 		}
 		file := server.GetUrlFromUser(urlparams)
-
 		defer os.Remove(file) // Remove the zip file
 		dirName := strings.Trim(file, ".zip")
 		defer os.RemoveAll(dirName) // Remove the folder from which zip was created
