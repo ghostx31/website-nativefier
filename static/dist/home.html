@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <title>Website Nativefier</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="home.css" rel="stylesheet">
+</head>
+
+<body class="mocha min-h-screen text-text bg-base grid font-sans flex">
+  <div> <!-- Content Wrapper -->
+        <div class="flex text-5xl top-96 font-bold justify-center mt-64 text-blue">
+            <a href="/">
+              <span>Website Nativefier</span>
+            </a>
+        </div>
+      <main>
+          <div class="p-4">
+            <form action="/save" method="post">
+              <br>
+              <div class="flex text-3xl justify-center space-x-4 text-lavender">
+                <h3>Enter the website</h3>
+                <input type="text" name="Url" class="form-input rounded-2xl focus:border-lavender bg-crust text-lavender">
+              </div>
+              <br>
+              <div class="text-3xl flex justify-center space-x-4 text-lavender">
+                <h3 id="Os">Enter your OS:</h3>
+                <div class="mocha px-3 flex gap-4 items-baseline text-2xl text-rosewater">
+                  <input type="radio" id="linux" name="Os" value="linux" class="latte bg-crust checked:bg-mauve">
+                  <label for="linux" class="input-data">Linux</label>
+                  <input type="radio" id="windows" name="Os" value="windows" class="latte bg-crust checked:bg-mauve">
+                  <label for="windows" class="input-data">Windows</label>
+                  <input type="radio" id="mac" name="Os" value="darwin" class="latte bg-crust checked:bg-mauve">
+                  <label for="mac" class="input-data">MacOs</label>
+                </div>
+              </div>
+              <br>
+              <div class="text-3xl flex justify-center text-lavender space-x-4">
+                <label for="widewine">Do you want Widewine support?</label>
+                <select id="widewine" class="bg-crust rounded focus:border-lavender">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </form>
+            <br>
+            <div class="flex justify-center">
+              <button type="submit" value="Submit" class="bg-crust text-text text-2xl rounded-2xl px-4 py-2 hover:bg-mauve hover:text-crust">Submit</button>
+            </div>
+        </div>
+      </main>
+  </div> <!-- End content wrappper -->
+</body>
+
+</html>

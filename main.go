@@ -14,8 +14,8 @@ import (
 func main() {
 	e := echo.New()
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
-		Root:   "static",
-		Index:  "file.html",
+		Root:   "static/dist",
+		Index:  "home.html",
 		Browse: false,
 		HTML5:  true,
 	}))
