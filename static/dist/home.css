@@ -621,7 +621,9 @@ select {
 
   font-style: normal;
 
-  src: url("/static/fonts/VictorMono-Regular.woff") format("woff");
+  /*src: url("/static/fonts/VictorMono-Regular.woff") format("woff");*/
+
+  src: local("Victor Mono"), local("VictorMono-Regular"), url("/static/fonts/VictorMono-Regular.woff") format("woff");
 }
 
 @font-face {
@@ -631,7 +633,9 @@ select {
 
   font-style: normal;
 
-  src: url("/static/fonts/VictorMono-Bold.woff") format("woff");
+  /*src: url("/static/fonts/VictorMono-Bold.woff") format("woff");*/
+
+  src: local("Victor Mono Bold"), local("VictorMono-Bold"), url("/static/fonts/VictorMono-Bold.woff") format("woff");
 }
 
 @font-face {
@@ -641,7 +645,9 @@ select {
 
   font-style: italic;
 
-  src: url("/static/fonts/VictorMono-Italic.woff") format("woff");
+  /*src: url("/static/fonts/VictorMono-Italic.woff") format("woff");*/
+
+  src: local("Victor Mono Italic"), local("VictorMono-Italic"), url("/static/fonts/VictorMono-Italic.woff") format("woff");
 }
 
 @font-face {
@@ -651,7 +657,9 @@ select {
 
   font-style: italic;
 
-  src: url("/static/fonts/VictorMono-BoldItalic.woff") format("woff");
+  /*src: url("/static/fonts/VictorMono-BoldItalic.woff") format("woff");*/
+
+  src: local("Victor Mono Bold Italic"), local("VictorMono-BoldItalic"), url("/static/fonts/VictorMono-BoldItalic.woff") format("woff");
 }
 
 *, ::before, ::after {
