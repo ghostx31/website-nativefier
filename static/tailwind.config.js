@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./main.css', './dist/*.html'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        victor: ['Victor Mono', 'monospace'],
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
