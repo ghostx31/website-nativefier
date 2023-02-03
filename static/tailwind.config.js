@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: ['./main.css', './dist/*.html'],
   theme: {
     extend: {
       fontFamily: {
-        victor: ['Victor Mono', 'monospace'],
+        fantasque: ['Fantasque Sans Mono', 'monospace'],
       }
     },
   },

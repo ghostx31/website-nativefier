@@ -1,7 +1,9 @@
 package main
 
 import (
+	"golang.org/x/time/rate"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/ghostx31/nativefier-downloader/internal/server"
@@ -13,6 +15,15 @@ import (
 // main function is used to run the server and interact with other packages
 func main() {
 	e := echo.New()
+
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	rateLimit, err := strconv.Atoi(os.Getenv("RATE_LIMIT"))
+	if err != nil {
+		rateLimit = 20
+	}
+	e.Use(middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(rate.Limit(rateLimit))))
+
 	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
 		Root:   "static/dist",
 		Index:  "home.html",
