@@ -27,7 +27,7 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.File("static/dist/home.html")
 	})
-	e.File("/favicon.ico", "static/dist/favicon.ico")
+	e.File("/favicon.ico", "static/assets/favicon.ico")
 
 	e.POST("/save", func(c echo.Context) error {
 		Url, Os, widewine := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine")
