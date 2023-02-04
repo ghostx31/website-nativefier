@@ -24,12 +24,11 @@ func main() {
 	}
 	e.Use(middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(rate.Limit(rateLimit))))
 
-	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
-		Root:   "static/dist",
-		Index:  "home.html",
-		Browse: false,
-		HTML5:  true,
-	}))
+	e.GET("/", func(c echo.Context) error {
+		return c.File("static/dist/home.html")
+	})
+	e.File("/favicon.ico", "static/dist/favicon.ico")
+
 	e.POST("/save", func(c echo.Context) error {
 		Url, Os, widewine := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine")
 
