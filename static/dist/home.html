@@ -5,73 +5,81 @@
   <title>Website Nativefier</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="home.css" rel="stylesheet">
+  <link href="./home.css" rel="stylesheet">
 </head>
 
 <body class="mocha text-text bg-base font-fantasque flex min-h-screen flex-col">
-<div>
-  <!-- Content Wrapper -->
-<!--  <div class="flex mocha bg-mantle text-blue justify-end p-5 px-10 text-3xl font-bold italic">-->
-  <nav class="mocha bg-mantle">
-    <div class="py-4 container flex flex-wrap justify-between mx-auto mocha text-blue">
-      <a href="/" class="flex items-center">
-        <img src="../assets/favicon.ico" alt="icon" class="h-6 mr-3 sm:h-9">
-        <span class="px-2 self-center text-2xl font-bold whitespace-nowrap hover:text-rosewater">
-        Nativefier
-        </span>
-      </a>
-      <div class="flex items-center space-x-4 px-2 font-bold text-2xl">
-        <a href="https://github.com/ghostx31/nativefier-downloader" target="_blank" class="hover:text-rosewater"> GitHub </a>
-        <span> | </span>
-        <a href="/about" class="hover:text-rosewater"> About </a>
-      </div>
-    </div>
-  </nav>
-  <div class="text-blue top-96 mt-64 flex justify-center text-5xl font-bold italic">
-    <a href="/">
-      <span>Nativefier</span>
-    </a>
-  </div>
-  <br>
-  <main>
-    <div class="p-4">
-      <form class="grid gap-8 w-fit mx-auto" action="/save" method="post">
-        <div class="text-lavender flex justify-between space-x-4 text-3xl">
-          <h3>Enter the website:</h3>
-          <input type="text" name="Url" class="form-input focus:border-lavender bg-crust text-lavender rounded-xl text-center grow" />
-        </div>
-        <div class="text-lavender flex justify-between space-x-4 text-3xl">
-          <h3 id="Os">Enter your OS:</h3>
-          <div class="mocha text-rosewater flex items-baseline justify-center gap-4 px-3 text-2xl grow">
-            <input type="radio" id="linux" name="Os" value="linux" class="mocha bg-crust checked:bg-mauve justify-evenly" />
-            <label for="linux" class="input-data">Linux</label>
-            <input type="radio" id="windows" name="Os" value="windows" class="mocha bg-crust checked:bg-mauve justify-evenly" />
-            <label for="windows" class="input-data">Windows</label>
-            <input type="radio" id="mac" name="Os" value="darwin" class="mocha bg-crust checked:bg-mauve justify-evenly" />
-            <label for="mac" class="input-data">MacOs</label>
-          </div>
-        </div>
-        <div class="text-lavender flex justify-between space-x-4 text-3xl">
-          <label for="widevine"><span class="hidden md:visible sm:inline"> Do you want </span>Widevine support?:</label>
-          <select id="widevine" class="bg-crust form-select focus:border-lavender rounded-xl grow">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-        <div class="flex justify-center">
-          <button type="submit" value="Submit" class="bg-crust text-text hover:bg-mauve hover:text-crust rounded-xl px-4 py-2 text-2xl">Submit</button>
-        </div>
-      </form>
-      <br>
-
-    </div>
-  </main>
   <div>
-    <footer class="mt-56 flex justify-center">
-      <p class="text-lavender">Made with ❤️️ using <a href="https://github.com/catppuccin" target="_blank" class="text-lavender hover:text-rosewater underline">Catppuccin</a></p>
-    </footer>
+    <!-- Content Wrapper -->
+    <!--  <div class="flex mocha bg-mantle text-blue justify-end p-5 px-10 text-3xl font-bold italic">-->
+    <nav class="mocha bg-mantle">
+      <div class="py-4 container flex flex-wrap justify-between mx-auto mocha text-blue">
+        <a href="/" class="flex items-center">
+           <img src="assets/favicon.ico" alt="icon" class="h-6 mr-3 sm:h-9">
+          <span class="px-2 self-center text-2xl font-bold whitespace-nowrap hover:text-rosewater">
+            Nativefier
+          </span>
+        </a>
+        <div class="flex items-center space-x-4 px-2 font-bold text-2xl">
+          <a href="https://github.com/ghostx31/nativefier-downloader" target="_blank" class="hover:text-rosewater">
+            GitHub </a>
+          <span> | </span>
+          <a href="/about" class="hover:text-rosewater"> About </a>
+        </div>
+      </div>
+    </nav>
+    <div class="text-blue top-96 mt-64 flex justify-center text-5xl font-bold italic">
+      <a href="/">
+        <span>Nativefier</span>
+      </a>
+    </div>
+    <br>
+    <main>
+      <div class="p-4">
+        <form class="grid gap-8 w-fit mx-auto" action="/save" method="post">
+          <div class="text-lavender flex justify-between space-x-4 text-3xl">
+            <h3>Enter the website:</h3>
+            <input type="text" name="Url"
+              class="form-input focus:border-lavender bg-crust text-lavender rounded-xl text-center grow" />
+          </div>
+          <div class="text-lavender flex justify-between space-x-4 text-3xl">
+            <h3 id="Os">Enter your OS:</h3>
+            <div class="mocha text-rosewater flex items-baseline justify-center gap-4 px-3 text-2xl grow">
+              <input type="radio" id="linux" name="Os" value="linux"
+                class="mocha bg-crust checked:bg-mauve justify-evenly" />
+              <label for="linux" class="input-data">Linux</label>
+              <input type="radio" id="windows" name="Os" value="windows"
+                class="mocha bg-crust checked:bg-mauve justify-evenly" />
+              <label for="windows" class="input-data">Windows</label>
+              <input type="radio" id="mac" name="Os" value="darwin"
+                class="mocha bg-crust checked:bg-mauve justify-evenly" />
+              <label for="mac" class="input-data">MacOs</label>
+            </div>
+          </div>
+          <div class="text-lavender flex justify-between space-x-4 text-3xl">
+            <label for="widevine"><span class="hidden md:visible sm:inline"> Do you want </span>Widevine
+              support?:</label>
+            <select id="widevine" class="bg-crust form-select focus:border-lavender rounded-xl grow">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit" value="Submit"
+              class="bg-crust text-text hover:bg-mauve hover:text-crust rounded-xl px-4 py-2 text-2xl">Submit</button>
+          </div>
+        </form>
+        <br>
+
+      </div>
+    </main>
+    <div>
+      <footer class="mt-56 flex justify-center">
+        <p class="text-lavender">Made with ❤️️ using <a href="https://github.com/catppuccin" target="_blank"
+            class="text-lavender hover:text-rosewater underline">Catppuccin</a></p>
+      </footer>
+    </div>
   </div>
-</div>
 </body>
 
 </html>
