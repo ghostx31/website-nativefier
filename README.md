@@ -1,16 +1,25 @@
-# Nativefier Downloader 
 
-[Nativefier](https://github.com/nativefier/nativefier) is a node cli tool which can convert any website into a native looking app using Electron. This aim of this repository is to provide this cli tool as a website. 
+<h3 align="center">Nativefier Downloader</h3>
 
-The repository needs to be built as a docker container to be used. 
 
-### Technologies used:
-- Node.js 
-- Golang 
-  - Echo server 
-- Docker 
+<p align="center">
+  <a href="https://github.com/ghostx31/nativefier-downloader/stargazers"><img src="https://img.shields.io/github/stars/ghostx31/nativefier-downloader?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
+  <a href="https://github.com/ghostx31/nativefier-downloader/contributors"><img src="https://img.shields.io/github/contributors/ghostx31/nativefier-downloader?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a> 
+</p>
 
-### How to build the docker container 
+<img src="static/dist/assets/nativefier.webp">
+
+Nativefier Downloader is a Golang and Tailwind CSS based project to convert your favourite websites into native-looking Electron apps!
+
+Just enter the URL of your favourite website, select your OS and bam! You have an Electron app ready to use!
+
+This project internally uses the [Nativefier NPM package](https://github.com/nativefier/nativefier) for build Electron apps.
+
+### Contributing
+
+If you wish to add a new feature, write your contributions on a new branch and open a PR against the dev branch.
+
+### Building the Docker container 
 
 - From the root of the repository run the command:
 ```bash
@@ -24,9 +33,9 @@ docker run -p 1323:1323 nativefier-downloader:latest
 
 - Now browse to `localhost:1323` to get to the page. 
 
-### What works currently
+### TODO
 
-- Currently only building the Linux and macOS packages work. The Windows build requires wine to be installed on the docker container and that's a long term goal since it needs more optimization. 
-- Front end is just a simple HTML page. The plan is to make a better front-end overall. 
-- There is nearly no error handling currently or user OS checking for automation. This would require some work on the `server.go` and I aim to complete it. 
-
+- [x] Support Electron apps for all three major OSes. 
+- [x] Better frontend
+- [ ] Refine support for different versions of macOS.
+- [ ] OS detection from browser (planned but not sure if I'll implement this).
