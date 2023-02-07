@@ -7,11 +7,11 @@ RUN go build -o nativefier-downloader
 
 FROM node:16 AS nodeimage
 WORKDIR /usr/src/app
-COPY --from=builder /app/package*.json ./
-RUN npm install 
+COPY --from=builder /app/static/package*.json ./
+RUN npm install
 COPY --from=builder /app ./
 
-FROM debian:latest 
+FROM debian:latest
 ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /app
 COPY --from=nodeimage /usr/src/app ./
@@ -24,8 +24,8 @@ RUN echo "deb https://dl.winehq.org/wine-builds/debian/ bullseye main" >> /etc/a
   dpkg --add-architecture i386 && \
   apt update -y
 RUN apt install -y --install-recommends winehq-staging
-# Install wine-mono from their site since its not available in Debian repo. 
-RUN wget https://dl.winehq.org/wine/wine-mono/7.4.0/wine-mono-7.4.0-x86.tar.xz 
+# Install wine-mono from their site since its not available in Debian repo.
+RUN wget https://dl.winehq.org/wine/wine-mono/7.4.0/wine-mono-7.4.0-x86.tar.xz
 RUN tar -xvf wine-mono-7.4.0-x86.tar.xz
 RUN mv wine-mono-7.4.0 /usr/share/wine/
 EXPOSE 1323

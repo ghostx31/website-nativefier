@@ -25,13 +25,15 @@ func main() {
 	}
 	e.Use(middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(rate.Limit(rateLimit))))
 
-	e.GET("/", func(c echo.Context) error {
-		return c.File("static/dist/home.html")
-	})
-
+	// Serve static files
 	e.File("/favicon.ico", "static/dist/assets/favicon.ico")
 	e.File("/home.css", "static/dist/home.css")
 	e.File("/assets/favicon.ico", "static/dist/assets/favicon.ico")
+
+	// Serve routes
+	e.GET("/", func(c echo.Context) error {
+		return c.File("static/dist/home.html")
+	})
 
 	e.GET("/about", func(c echo.Context) error {
 		return c.File("static/dist/about.html")
