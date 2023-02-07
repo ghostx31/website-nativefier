@@ -1,5 +1,10 @@
 
-<h1 align="center">Nativefier Downloader</h1>
+<h2 align="center">Nativefier Downloader</h2>
+
+<p align="center">
+  <a href="https://github.com/ghostx31/nativefier-downloader/stargazers"><img src="https://img.shields.io/github/stars/ghostx31/nativefier-downloader?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
+  <a href="https://github.com/ghostx31/nativefier-downloader/contributors"><img src="https://img.shields.io/github/contributors/ghostx31/nativefier-downloader?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a> 
+</p>
 
 <img src="static/dist/assets/nativefier.webp">
 Nativefier Downloader is an Golang and Tailwind CSS based project to convert your favourite websites into native-looking Electron apps!
