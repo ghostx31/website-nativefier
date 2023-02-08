@@ -13,7 +13,7 @@ Nativefier Downloader is a Golang and Tailwind CSS based project to convert your
 
 Just enter the URL of your favourite website, select your OS and bam! You have an Electron app ready to use!
 
-This project internally uses the [Nativefier NPM package](https://github.com/nativefier/nativefier) for build Electron apps.
+This project internally uses the [Nativefier NPM package](https://github.com/nativefier/nativefier) for building Electron apps.
 
 ### Contributing
 
