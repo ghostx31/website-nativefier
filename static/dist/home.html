@@ -64,6 +64,15 @@
               <option value="no">No</option>
             </select>
           </div>
+          <div class="text-lavender flex justify-between space-x-4 text-3xl">
+            <label for="tray"><span class="hidden md:visible sm:inline"> Do you want </span>Tray
+              support?:</label>
+            <select id="tray" class="bg-crust form-select focus:border-lavender rounded-xl grow">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+              <option value="start-in-tray">Start in Tray</option>
+            </select>
+          </div>
           <div class="flex justify-center">
             <button type="submit" value="Submit"
               class="bg-crust text-text hover:bg-mauve hover:text-crust rounded-xl px-4 py-2 text-2xl">Submit</button>
@@ -74,7 +83,7 @@
       </div>
     </main>
     <div>
-      <footer class="mt-56 flex justify-center">
+      <footer class="mt-48  flex justify-center">
         <p class="text-lavender">Made with ❤️️ using <a href="https://github.com/catppuccin" target="_blank"
             class="text-lavender hover:text-rosewater underline">Catppuccin</a></p>
       </footer>

@@ -22,7 +22,7 @@ func GetUrlFromUser(urlparams structs.Urlparams) string {
 }
 
 // GetFilename is responsible for getting the name of the zip file and the directory created.
-func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName string, directoryName string) {
+func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName string, directoryName string, tray string) {
 	name, err := url.Parse(urlparams.Url)
 	if err != nil {
 		panic(err)
@@ -40,6 +40,7 @@ func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName st
 	runtimeOs := strings.ReplaceAll(runtime.GOARCH, "amd", "x")
 	directoryName = folderName + "-" + urlparams.Os + "-" + runtimeOs
 	zipFileName = directoryName + ".zip"
+	tray = urlparams.Tray
 
 	fmt.Printf("\nDirectory name is: %v", directoryName)
 	fmt.Printf("\nZip file name is: %v", string(zipFileName))
@@ -52,14 +53,14 @@ func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName st
 	if err != nil {
 		panic(err)
 	}
-	return zipFileName, folderName, directoryName
+	return zipFileName, folderName, directoryName, tray
 }
 
 // BuildWebApp is responsible for building the electron app.
 func BuildWebApp(urlparams structs.Urlparams) string {
-	zipFileName, folderName, directoryName := GetFilename(urlparams)
+	zipFileName, folderName, directoryName, tray := GetFilename(urlparams)
 	// executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
-	executeCommand := exec.Command("nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os)
+	executeCommand := exec.Command("nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os, "--tray", tray)
 	stdout, err := executeCommand.Output()
 	if err != nil {
 		fmt.Printf("error: %v", err)
