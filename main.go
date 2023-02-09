@@ -44,12 +44,12 @@ func main() {
 	})
 
 	e.POST("/save", func(c echo.Context) error {
-		Url, Os, widewine, tray := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine"), c.FormValue("tray")
+		Url, Os, widevine, tray := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widevine"), c.FormValue("tray")
 
 		urlparams := structs.Urlparams{
 			Url:      Url,
 			Os:       Os,
-			Widewine: widewine,
+			Widevine: widevine,
 			Tray:     tray,
 		}
 		file := server.GetUrlFromUser(urlparams)
