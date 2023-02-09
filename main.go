@@ -39,18 +39,33 @@ func main() {
 		return c.File("static/dist/about.html")
 	})
 
+	e.GET("/usage", func(c echo.Context) error {
+		return c.File("static/dist/usage.html")
+	})
+
 	e.POST("/save", func(c echo.Context) error {
-		Url, Os, widewine := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine")
+		Url, Os, widevine, tray := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widevine"), c.FormValue("tray")
 
 		urlparams := structs.Urlparams{
 			Url:      Url,
 			Os:       Os,
-			Widewine: widewine,
+			Widevine: widevine,
+			Tray:     tray,
 		}
 		file := server.GetUrlFromUser(urlparams)
-		defer os.Remove(file) // Remove the zip file
+		defer func(name string) {
+			err := os.Remove(name)
+			if err != nil {
+				panic(err)
+			}
+		}(file) // Remove the zip file
 		dirName := strings.Trim(file, ".zip")
-		defer os.RemoveAll(dirName) // Remove the folder from which zip was created
+		defer func(path string) {
+			err := os.RemoveAll(path)
+			if err != nil {
+				panic(err)
+			}
+		}(dirName) // Remove the folder from which zip was created
 
 		return c.Attachment(file, file)
 	})
