@@ -39,6 +39,10 @@ func main() {
 		return c.File("static/dist/about.html")
 	})
 
+	e.GET("/usage", func(c echo.Context) error {
+		return c.File("static/dist/usage.html")
+	})
+
 	e.POST("/save", func(c echo.Context) error {
 		Url, Os, widewine, tray := c.FormValue("Url"), c.FormValue("Os"), c.FormValue("widewine"), c.FormValue("tray")
 

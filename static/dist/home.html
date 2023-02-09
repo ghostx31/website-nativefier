@@ -11,7 +11,6 @@
 <body class="mocha text-text bg-base font-fantasque flex min-h-screen flex-col">
   <div>
     <!-- Content Wrapper -->
-    <!--  <div class="flex mocha bg-mantle text-blue justify-end p-5 px-10 text-3xl font-bold italic">-->
     <nav class="mocha bg-mantle">
       <div class="py-4 container flex flex-wrap justify-between mx-auto mocha text-blue">
         <a href="/" class="flex items-center">
@@ -23,6 +22,8 @@
         <div class="flex items-center space-x-4 px-2 font-bold text-2xl">
           <a href="https://github.com/ghostx31/nativefier-downloader" target="_blank" class="hover:text-rosewater">
             GitHub </a>
+          <span> | </span>
+          <a href="/usage" class="hover:text-rosewater">Usage</a>
           <span> | </span>
           <a href="/about" class="hover:text-rosewater"> About </a>
         </div>
@@ -65,8 +66,8 @@
             </select>
           </div>
           <div class="text-lavender flex justify-between space-x-4 text-3xl">
-            <label for="tray"><span class="hidden md:visible sm:inline"> Do you want </span>Tray
-              support?:</label>
+            <label for="tray"><span class="hidden md:visible sm:inline"> Do you want Tray
+              support?:</span></label>
             <select id="tray" class="bg-crust form-select focus:border-lavender rounded-xl grow">
               <option value="true">Yes</option>
               <option value="false">No</option>
@@ -83,7 +84,7 @@
       </div>
     </main>
     <div>
-      <footer class="mt-48  flex justify-center">
+      <footer class="flex justify-center fixed bottom-5 w-full">
         <p class="text-lavender">Made with ❤️️ using <a href="https://github.com/catppuccin" target="_blank"
             class="text-lavender hover:text-rosewater underline">Catppuccin</a></p>
       </footer>
