@@ -2,6 +2,8 @@ name: Build docker image for Nativefier-downloader
 
 on:
   push:
+    branches:
+      - main
     tags:
       - '*'
 
