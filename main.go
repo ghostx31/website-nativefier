@@ -53,9 +53,19 @@ func main() {
 			Tray:     tray,
 		}
 		file := server.GetUrlFromUser(urlparams)
-		defer os.Remove(file) // Remove the zip file
+		defer func(name string) {
+			err := os.Remove(name)
+			if err != nil {
+				panic(err)
+			}
+		}(file) // Remove the zip file
 		dirName := strings.Trim(file, ".zip")
-		defer os.RemoveAll(dirName) // Remove the folder from which zip was created
+		defer func(path string) {
+			err := os.RemoveAll(path)
+			if err != nil {
+				panic(err)
+			}
+		}(dirName) // Remove the folder from which zip was created
 
 		return c.Attachment(file, file)
 	})

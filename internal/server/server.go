@@ -45,7 +45,12 @@ func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName st
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(file)
 	_, err = file.Write([]byte(zipFileName))
 	if err != nil {
 		panic(err)
@@ -70,10 +75,20 @@ func zipDirectory(source, target string) error {
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		err := f.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(f)
 
 	writer := zip.NewWriter(f)
-	defer writer.Close()
+	defer func(writer *zip.Writer) {
+		err := writer.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(writer)
 
 	return filepath.Walk(source, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -106,7 +121,12 @@ func zipDirectory(source, target string) error {
 		if err != nil {
 			return err
 		}
-		defer f.Close()
+		defer func(f *os.File) {
+			err := f.Close()
+			if err != nil {
+				panic(err)
+			}
+		}(f)
 
 		_, err = io.Copy(headerWriter, f)
 		return err
@@ -127,7 +147,10 @@ func execCommandChore(executeCommand *exec.Cmd, zipFileName string, directoryNam
 	}
 	fmt.Printf(string(stdout))
 	fmt.Printf("Zipping: %v\n", zipFileName)
-	zipDirectory(directoryName, zipFileName)
+	err = zipDirectory(directoryName, zipFileName)
+	if err != nil {
+		return ""
+	}
 	fmt.Printf("Zip complete! %v\n", zipFileName)
 	return zipFileName
 }
