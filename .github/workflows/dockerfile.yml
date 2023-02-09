@@ -1,6 +1,9 @@
 name: Build docker image for Nativefier-downloader
 
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-docker-image:
@@ -12,4 +15,4 @@ jobs:
         with: 
           github-token: ${{ secrets.GITHUB_TOKEN }}
           image-name: nativefier-downloader
-          image-tag: latest
+          extract-git-tag: true
