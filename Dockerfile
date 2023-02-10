@@ -5,7 +5,7 @@ RUN go mod download
 COPY . .
 RUN go build -o nativefier-downloader
 
-FROM node:16 AS nodeimage
+FROM node:latest AS nodeimage
 WORKDIR /usr/src/app
 COPY --from=builder /app/static/package*.json ./
 RUN npm install

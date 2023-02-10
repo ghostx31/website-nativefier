@@ -148,9 +148,6 @@ func execCommandChore(executeCommand *exec.Cmd, zipFileName string, directoryNam
 	fmt.Printf(string(stdout))
 	fmt.Printf("Zipping: %v\n", zipFileName)
 	err = zipDirectory(directoryName, zipFileName)
-	if err != nil {
-		return ""
-	}
 	fmt.Printf("Zip complete! %v\n", zipFileName)
 	return zipFileName
 }
