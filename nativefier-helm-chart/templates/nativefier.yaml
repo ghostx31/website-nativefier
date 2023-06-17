@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nativefier-svc
+spec: 
+  selector: 
+    app: nativefier
+  type: NodePort
+  ports: 
+    - port: 1323
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nativefier
+spec:
+  selector:
+    matchLabels:
+      app: nativefier
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nativefier
+    spec:
+      containers:
+      - name: nativefier
+        image: spookyintheam/nativefier:latest
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "200m"
+          requests:
+            memory: "300Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 1323
