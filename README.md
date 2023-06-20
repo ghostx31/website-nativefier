@@ -33,7 +33,11 @@ docker run -p 1323:1323 nativefier:latest
 
 - Now browse to `localhost:1323` to get to the page. 
 
-- A docker image on dockerhub is also available. To use this image, run `docker run -p 1323:1323 spookyintheam/nativefier:latest`
+- A docker image on dockerhub is also available. To use this image, run 
+
+```bash
+docker run -p 1323:1323 spookyintheam/nativefier:latest
+```
 
 ### Helm Chart for Kubernetes
 
@@ -43,7 +47,7 @@ The repository also includes a helm chart with HPA for autoscaling. To build and
 helm install nativefier nativefier-helm-chart/
 ```
 
-Then get the external IP of the deployment's load balancer by running `kubectl get svc`. Open this IP address in the URL bar to access the project's homepage. 
+Then get the external IP of the deployment's load balancer by running `kubectl get svc`. Open the external IP address in the URL bar to access the project's homepage. 
 
 ### TODO
 
