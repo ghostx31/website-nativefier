@@ -23,19 +23,32 @@ If you wish to add a new feature, write your contributions on a new branch and o
 
 - From the root of the repository run the command:
 ```bash
-docker build --network=host -t nativefier-downloader:latest .
+docker build --network=host -t nativefier:latest .
 ```
 
 - To run the built docker container: 
 ```bash
-docker run -p 1323:1323 nativefier-downloader:latest
+docker run -p 1323:1323 nativefier:latest
 ```
 
 - Now browse to `localhost:1323` to get to the page. 
+
+- A docker image on dockerhub is also available. To use this image, run `docker run -p 1323:1323 spookyintheam/nativefier:latest`
+
+### Helm Chart for Kubernetes
+
+The repository also includes a helm chart with HPA for autoscaling. To build and deploy the helm chart, from the root of the project directory, run:
+
+```bash
+helm install nativefier nativefier-helm-chart/
+```
+
+Then get the external IP of the deployment's load balancer by running `kubectl get svc`. Open this IP address in the URL bar to access the project's homepage. 
 
 ### TODO
 
 - [x] Support Electron apps for all three major OSes. 
 - [x] Better frontend
+- [x] Push image to dockerhub and also create a Kubernetes deployment Helm chart.
 - [ ] Refine support for different versions of macOS.
 - [ ] OS detection from browser (planned but not sure if I'll implement this).
