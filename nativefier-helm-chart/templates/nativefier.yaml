@@ -14,26 +14,25 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nativefier
+  name: nativefier-app
 spec:
   selector:
     matchLabels:
       app: nativefier
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
         app: nativefier
     spec:
       containers:
-      - name: nativefier
-        image: spookyintheam/nativefier:latest
+      - name: nativefier-container
+        image: nativefier.azurecr.io/nativefier:latest
+        # image: spookyintheam/nativefier:latest
         resources:
           limits:
-            memory: "500Mi"
-            cpu: "200m"
+            cpu: "100m"
           requests:
-            memory: "300Mi"
             cpu: "100m"
         ports:
         - containerPort: 1323

@@ -61,11 +61,11 @@ func GetFilename(urlparams structs.Urlparams) (zipFileName string, folderName st
 // BuildWebApp is responsible for building the electron app.
 func BuildWebApp(urlparams structs.Urlparams) string {
 	zipFileName, folderName, directoryName := GetFilename(urlparams)
-	if isRunningInDocker() == true {
-		executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os, "--tray", urlparams.Tray, "--widevine", urlparams.Widevine)
-		return execCommandChore(executeCommand, zipFileName, directoryName)
-	}
-	executeCommand := exec.Command("nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os, "--tray", urlparams.Tray, "--widevine", urlparams.Widevine)
+	// if isRunningInDocker() == true {
+	// 	executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os, "--tray", urlparams.Tray, "--widevine", urlparams.Widevine)
+	// 	return execCommandChore(executeCommand, zipFileName, directoryName)
+	// }
+	executeCommand := exec.Command("./node_modules/.bin/nativefier", urlparams.Url, "--name", folderName, "-p", urlparams.Os, "--tray", urlparams.Tray, "--widevine", urlparams.Widevine)
 	return execCommandChore(executeCommand, zipFileName, directoryName)
 }
 

@@ -16,7 +16,7 @@ ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /app
 COPY --from=nodeimage /usr/src/app ./
 RUN apt update -y && \
-  apt install -y wget ca-certificates software-properties-common gnupg2 nodejs npm tar
+  apt install -y wget ca-certificates software-properties-common gnupg2 tar xz-utils zip nodejs npm
 # Installing wine since we need it for packaging windows stuff
 RUN echo "deb https://dl.winehq.org/wine-builds/debian/ bullseye main" >> /etc/apt/sources.list.d/wine.list && \
   wget -nc https://dl.winehq.org/wine-builds/winehq.key && \

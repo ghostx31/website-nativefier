@@ -1,24 +1,32 @@
+# To load test, install https://github.com/rakyll/Hey and run hey -m GET -n 300 -z 5m -c 300 http://Ingress-external-IP
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: nativefier
+  name: nativefier-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nativefier
+    name: nativefier-app
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 50
+        averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Pods
+        value: 3
+        periodSeconds: 15
+    scaleDown:
+      stabilizationWindowSeconds: 50
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 15
