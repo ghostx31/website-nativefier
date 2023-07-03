@@ -27,8 +27,8 @@ spec:
     spec:
       containers:
       - name: nativefier-container
-        image: nativefier.azurecr.io/nativefier:latest
-        # image: spookyintheam/nativefier:latest
+        # image: nativefier.azurecr.io/nativefier:latest
+        image: spookyintheam/nativefier:latest
         resources:
           limits:
             cpu: "100m"

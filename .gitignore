@@ -2,7 +2,8 @@ node_modules/
 nativefier-downloader
 .idea/
 save.txt
+nativefier-terraform/*.tfstate
+nativefier-terraform/*.tfstate.backup
 nativefier-terraform/*.tfplan
-nativefier-terraform/*.tfplan.backup
 nativefier-terraform/.terraform
 nativefier-terraform/.terraform.lock.hcl

@@ -25,21 +25,25 @@ terraform {
   }
 }
 
-provider "helm" {
-  kubernetes {
-    config_path = "/home/admin1/.kube/config"
-  }
+data "azurerm_kubernetes_cluster" "example" {
+  name = azurerm_kubernetes_cluster.k8s.name
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
-provider "docker" {
-  registry_auth {
-    address = azurerm_container_registry.nativefier.login_server
-    username = azurerm_container_registry.nativefier.admin_username
-    password = azurerm_container_registry.nativefier.admin_password
-  }
+locals {
+  kubeconfig_path = "kubeconfig"
 }
-provider "kubernetes" {
-  config_path = "/home/admin1/.kube/config"
+
+resource "local_file" "kubeconfig" {
+  filename = local.kubeconfig_path
+  content = data.azurerm_kubernetes_cluster.example.kube_config_raw
+  file_permission = "0664"
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "kubeconfig"
+  }
 }
 
 provider "azurerm" {

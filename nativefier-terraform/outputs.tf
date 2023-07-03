@@ -5,9 +5,9 @@ output "resource_group_name" {
 # output "azurerm_role_assignment" {
 #   value = azurerm_role_assignment.containerRoleassignment.role_definition_name
 # }
-output "azurerm_role_assignment" {
-  value = azurerm_role_assignment.containerRoleassignment.name
-}
+# output "azurerm_role_assignment" {
+#   value = azurerm_role_assignment.containerRoleassignment.name
+# }
 
 output "kubernetes_cluster_name" {
   value = azurerm_kubernetes_cluster.k8s.name
@@ -46,8 +46,4 @@ output "host" {
 output "kube_config" {
   value     = azurerm_kubernetes_cluster.k8s.kube_config_raw
   sensitive = true
-}
-
-output "nginx_ingress_external_ip" {
-  value = azurerm_resource_group.rg.name
 }

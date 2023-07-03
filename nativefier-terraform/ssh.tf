@@ -23,6 +23,3 @@ output "key_data" {
   value = azapi_resource.ssh_public_key.body
   sensitive = true
 }
-
-
-
