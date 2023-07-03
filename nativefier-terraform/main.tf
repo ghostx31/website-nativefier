@@ -58,4 +58,3 @@ resource "helm_release" "nativefier" {
     value = "true"
   }
 }
-
