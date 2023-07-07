@@ -1,4 +1,4 @@
-name: Build docker image for Nativefier-downloader
+name: Build docker image for nativefier
 
 on:
   [workflow_dispatch]
