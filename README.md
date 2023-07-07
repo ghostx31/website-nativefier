@@ -15,6 +15,10 @@ Just enter the URL of your favourite website, select your OS and bam! You have a
 
 This project internally uses the [Nativefier NPM package](https://github.com/nativefier/nativefier) for building Electron apps.
 
+### Network architecture 
+
+<img src="static/dist/assets/website-nativefier.drawio.webp">
+
 ### Contributing
 
 If you wish to add a new feature, write your contributions on a new branch and open a PR against the dev branch.
