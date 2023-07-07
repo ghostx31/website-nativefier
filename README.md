@@ -49,10 +49,31 @@ helm install nativefier nativefier-helm-chart/
 
 Then get the external IP of the deployment's load balancer by running `kubectl get svc`. Open the external IP address in the URL bar to access the project's homepage. 
 
+### Terraform deployment 
+
+This project can also be deployed to Microsoft Azure Kubernetes Service using Terraform. The terraform deployment creates an AKS deployment and deploys the helm chart on this deployment. 
+
+To get started with the deployment, first initialize the terraform providers by running:
+
+```bash
+terraform init -upgrade
+```
+Once the providers are downloaded, apply the terraform deployment. 
+
+```bash
+terraform plan -out azure.tfplan
+terraform apply azure.tfplan 
+```
+
+**Note:** 
+  1. You will need to update the `null_resource` which pushes the Docker container to Docker Hub in the terraform deployment with your own repository's name for the `null_resource` to work. 
+  2. The AKS cluster's SKU is basic but you're free to change this if you have a premium Azure subscription.
+
 ### TODO
 
 - [x] Support Electron apps for all three major OSes. 
 - [x] Better frontend
 - [x] Push image to dockerhub and also create a Kubernetes deployment Helm chart.
+- [x] Add Terraform deployment
 - [ ] Refine support for different versions of macOS.
 - [ ] OS detection from browser (planned but not sure if I'll implement this).
